@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://yexs31334mte"]
+
+[ext_resource type="Texture2D" uid="uid://bran7hr7bga71" path="res://assets/brackeys_platformer_assets/sprites/testrail.png" id="1_h8gjn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0d7fu"]
+size = Vector2(66, 9)
+
+[node name="rail" type="Area2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 0.5)
+scale = Vector2(1, 0.978261)
+texture = ExtResource("1_h8gjn")
+region_enabled = true
+region_rect = Rect2(63, 1, 65, 46)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3.5)
+shape = SubResource("RectangleShape2D_0d7fu")
