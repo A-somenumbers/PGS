@@ -55,6 +55,7 @@ func _physics_process(delta: float) -> void:
 	lastDir = direction
 	anim_control(direction)
 	move_and_slide()
+	if boostMeeter >= 100: boostMeeter = 100
 
 
 func _input(event):
