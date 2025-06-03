@@ -8,6 +8,7 @@ const JUMP_VELOCITY = 300.0
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var camera_2d: Camera2D = $Camera2D
 @onready var boostfxtimer: Timer = $boostfxtime
+@onready var chargeTimer: Timer = $ChargeTime
 
 #for momentum
 var groundSpeed := 0
@@ -22,7 +23,9 @@ var isBoosting = false
 #player properties
 var boostMeeter := 100.0
 var boostDeplet := 0.5
-
+var chargeMeter :=0.0
+var chargeAdd := 0.1
+var charging = false
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -56,13 +59,31 @@ func _physics_process(delta: float) -> void:
 	anim_control(direction)
 	move_and_slide()
 	if boostMeeter >= 100: boostMeeter = 100
+	if Input.is_action_just_pressed("Charge"):
+		chargeTimer.start()
+		charging = true
+	if Input.is_action_just_released("Charge"):
+		charging = false
+		chargeTimer.stop()
+	
+	if charging:
+		chargeMeter = 100 - chargeTimer.time_left / chargeTimer.wait_time * 100
+	else :
+		chargeMeter = 0 
+	print(chargeTimer.time_left / chargeTimer.wait_time)
+
 
 
 func _input(event):
 	if event.is_action_released("jump"):
 		if velocity.y < 0:
 			velocity.y *= 0.5
-			
+	
+	#if event.is_action_released("Charge"):
+		#chargeMeter = 0.0
+		#chargeTimer.stop()
+		
+		
 
 
 func anim_control(direction):
@@ -141,4 +162,6 @@ func calculateSpeed(direction):
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.has_method("coin"):
+		boostMeeter += 5
+	if area.has_method("wall"):
 		boostMeeter += 10

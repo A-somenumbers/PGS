@@ -234,7 +234,7 @@ shape = SubResource("CircleShape2D_iit1j")
 [node name="Control" parent="CanvasLayer" instance=ExtResource("4_gwwle")]
 
 [node name="ChargeTime" type="Timer" parent="."]
-wait_time = 0.281
-one_shot = true
+wait_time = 3.0
+autostart = true
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
