@@ -12,4 +12,4 @@ func speed_label():
 
 func meter_label():
 	meter2.value = round(player.boostMeeter)
-	charge.text = "Meter: " + str(abs(player.chargeMeter))
+	charge.text = "Meter: " + str(abs(Global.charge))

@@ -23,9 +23,10 @@ var isBoosting = false
 #player properties
 var boostMeeter := 100.0
 var boostDeplet := 0.5
-var chargeMeter :=0.0
+#var Global.charge :=0.0
 var chargeAdd := 0.1
 var charging = false
+var charged = false
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -67,10 +68,13 @@ func _physics_process(delta: float) -> void:
 		chargeTimer.stop()
 	
 	if charging:
-		chargeMeter = 100 - chargeTimer.time_left / chargeTimer.wait_time * 100
+		Global.charge = 100 - chargeTimer.time_left / chargeTimer.wait_time * 100
+		Global.lastCharge = Global.charge
 	else :
-		chargeMeter = 0 
-	print(chargeTimer.time_left / chargeTimer.wait_time)
+		
+		Global.charge = 0 
+	
+	#print(chargeTimer.time_left / chargeTimer.wait_time)
 
 
 
@@ -80,7 +84,7 @@ func _input(event):
 			velocity.y *= 0.5
 	
 	#if event.is_action_released("Charge"):
-		#chargeMeter = 0.0
+		#Global.charge = 0.0
 		#chargeTimer.stop()
 		
 		
