@@ -9,6 +9,7 @@ const JUMP_VELOCITY = 300.0
 @onready var camera_2d: Camera2D = $Camera2D
 @onready var boostfxtimer: Timer = $boostfxtime
 @onready var chargeTimer: Timer = $ChargeTime
+@onready var coyoteTimer: Timer = $coyote
 
 #for momentum
 var groundSpeed := 0
@@ -18,28 +19,43 @@ var acceleration := 16
 var decel := 20
 var friction := 16
 var lastDir: float
-var isBoosting = false
+
 
 #player properties
 var boostMeeter := 100.0
 var boostDeplet := 0.5
-#var Global.charge :=0.0
 var chargeAdd := 0.1
+var airtime = 0.0
+var jumps = 0
+var normal: Vector2
+
+#states
+var isBoosting = false
 var charging = false
 var charged = false
+var isGrinding = false
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	var direction := Input.get_axis("move_left", "move_right")
+	if direction != 0:
+		Global.moving = true
+	else:
+		Global.moving = false
 	velocity.x = groundSpeed
-	var normal: Vector2 = get_floor_normal()
-	if not is_on_floor():
+	airtime += delta
+	if is_on_floor():
+		airtime = 0.0
+		jumps = 0
+		normal = get_floor_normal()
+
+	if Input.is_action_just_pressed("jump") and jumps<1 and airtime < 0.1:
+		velocity += normal * JUMP_VELOCITY
+		jumps = 1
+	else:
 		velocity.y += gravForce 
 		if(velocity.y >= gravForce*80):
 			velocity.y = gravForce*80
-	# Handle jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity += normal * JUMP_VELOCITY
 	if Input.is_action_pressed("boost") :
 		if direction != 0:
 			if boostMeeter > 0:	
@@ -54,11 +70,15 @@ func _physics_process(delta: float) -> void:
 		velocity.x = velocity.move_toward(Vector2.ZERO,decel).x
 		isBoosting = false
 	#print(groundSpeed)
+	var was_on_floor = is_on_floor()
 	flash(direction)
 	calculateSpeed(direction)
 	lastDir = direction
 	anim_control(direction)
+	cameraControl(direction,camera_2d,delta)
 	move_and_slide()
+	if was_on_floor and !is_on_floor() and !Input.is_action_just_pressed("jump"):
+		coyoteTimer.start()
 	if boostMeeter >= 100: boostMeeter = 100
 	if Input.is_action_just_pressed("Charge"):
 		chargeTimer.start()
@@ -73,10 +93,11 @@ func _physics_process(delta: float) -> void:
 	else :
 		
 		Global.charge = 0 
-	
+	Global.boost = boostMeeter
 	#print(chargeTimer.time_left / chargeTimer.wait_time)
-
-
+	#print(isGrinding)
+	#camera code
+	
 
 func _input(event):
 	if event.is_action_released("jump"):
@@ -159,7 +180,25 @@ func calculateSpeed(direction):
 		groundSpeed = BOOST_SPEED * direction
 	
 
-
+func cameraControl(direction,Camera2D,delta):
+	var fast = 20
+	if isBoosting:
+		fast = 40
+	else:
+		fast = 20
+	if direction > 0:
+		if camera_2d.offset.x < 100:
+			camera_2d.offset.x += delta*fast
+	if direction < 0:
+		if camera_2d.offset.x > -100:
+			camera_2d.offset.x -= delta*fast
+	if direction == 0:
+		if camera_2d.offset.x < 0:
+			camera_2d.offset.x += delta*50
+		if camera_2d.offset.x > 0:
+			camera_2d.offset.x -= delta*50
+	if camera_2d.offset.y != 0:
+		camera_2d.offset.y = 0
 
 
 
@@ -169,3 +208,10 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		boostMeeter += 5
 	if area.has_method("wall"):
 		boostMeeter += 10
+	if area.has_method("rail"):
+		isGrinding = true
+		
+		
+func player():
+	pass
+		

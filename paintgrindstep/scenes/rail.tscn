@@ -1,19 +1,43 @@
-[gd_scene load_steps=3 format=3 uid="uid://yexs31334mte"]
+[gd_scene load_steps=5 format=3 uid="uid://cfcjvjtrwq8xl"]
 
-[ext_resource type="Texture2D" uid="uid://bran7hr7bga71" path="res://assets/brackeys_platformer_assets/sprites/testrail.png" id="1_h8gjn"]
+[ext_resource type="Texture2D" uid="uid://8aup0ufukbo8" path="res://assets/brackeys_platformer_assets/sprites/rail.png" id="1_hkqs5"]
+[ext_resource type="Script" path="res://scenes/rail.gd" id="1_ln3ia"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0d7fu"]
-size = Vector2(66, 9)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8mes2"]
+size = Vector2(192, 8)
 
-[node name="rail" type="Area2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5rkyv"]
+size = Vector2(191, 20)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, 0.5)
-scale = Vector2(1, 0.978261)
-texture = ExtResource("1_h8gjn")
+[node name="rail" type="AnimatableBody2D"]
+script = ExtResource("1_ln3ia")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(0, 1)
+texture = ExtResource("1_hkqs5")
 region_enabled = true
-region_rect = Rect2(63, 1, 65, 46)
+region_rect = Rect2(-1, 91, 65, 14)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Sprite2D3"]
+position = Vector2(64, 12)
+texture = ExtResource("1_hkqs5")
+region_enabled = true
+region_rect = Rect2(0, 156, 64, 36)
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprite2D3"]
+position = Vector2(-64, 12)
+texture = ExtResource("1_hkqs5")
+region_enabled = true
+region_rect = Rect2(0, 29, 64, 34)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -3.5)
-shape = SubResource("RectangleShape2D_0d7fu")
+shape = SubResource("RectangleShape2D_8mes2")
+one_way_collision = true
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(0, -5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_5rkyv")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

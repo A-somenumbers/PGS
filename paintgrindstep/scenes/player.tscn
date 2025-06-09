@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://cpei0qpq5a6sh"]
+[gd_scene load_steps=33 format=3 uid="uid://cpei0qpq5a6sh"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_ekskw"]
 [ext_resource type="Material" uid="uid://cvr574d7jsmpr" path="res://scenes/player.tres" id="1_jl0jb"]
@@ -36,6 +36,10 @@ region = Rect2(384, 192, 64, 64)
 [sub_resource type="AtlasTexture" id="AtlasTexture_dqrrx"]
 atlas = ExtResource("2_mucfx")
 region = Rect2(0, 256, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p66ov"]
+atlas = ExtResource("2_mucfx")
+region = Rect2(192, 384, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_18xh4"]
 atlas = ExtResource("2_mucfx")
@@ -134,6 +138,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_p66ov")
+}],
+"loop": true,
+"name": &"grind",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_18xh4")
 }, {
 "duration": 1.0,
@@ -212,9 +224,8 @@ z_index = 5
 material = ExtResource("1_jl0jb")
 position = Vector2(0, -26)
 sprite_frames = SubResource("SpriteFrames_ujigl")
-animation = &"run"
+animation = &"grind"
 autoplay = "idle"
-frame_progress = 0.459721
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(3, -9)
@@ -236,4 +247,8 @@ shape = SubResource("CircleShape2D_iit1j")
 [node name="ChargeTime" type="Timer" parent="."]
 one_shot = true
 
+[node name="coyote" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
