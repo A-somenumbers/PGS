@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://bhdpd6fgheheh"]
+
+[ext_resource type="Script" path="res://scripts/real_rail.gd" id="1_u8833"]
+[ext_resource type="PackedScene" uid="uid://c7ajxelg07he5" path="res://scenes/rail(type_2).tscn" id="2_yl4iu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1tr2j"]
+size = Vector2(258, 13)
+
+[node name="realrailtype2" type="Area2D"]
+script = ExtResource("1_u8833")
+
+[node name="rail(type2)" parent="." instance=ExtResource("2_yl4iu")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3.5)
+shape = SubResource("RectangleShape2D_1tr2j")

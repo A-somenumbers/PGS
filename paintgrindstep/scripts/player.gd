@@ -115,10 +115,12 @@ func anim_control(direction):
 	if is_on_floor():
 		var normal: Vector2 = get_floor_normal()
 		animated_sprite_2d.rotation = normal.angle() + PI/2
-
-		if direction == 0:
+		if(isGrinding):
+				animated_sprite_2d.play("grind")
+		elif direction == 0:
 			animated_sprite_2d.play("idle")
 		else:
+			
 			if(abs(groundSpeed) > MAX_SPEED-50):
 				animated_sprite_2d.play("faster run")
 			elif(abs(groundSpeed)<100):
@@ -131,10 +133,10 @@ func anim_control(direction):
 		animated_sprite_2d.play("jump")
 		
 		
-	if direction >0:
+	if direction >0 and !isGrinding:
 		animated_sprite_2d.flip_h = false
 		
-	elif direction <0:
+	elif direction <0 and !isGrinding:
 		animated_sprite_2d.flip_h = true
 		
 func flash(direction):
@@ -150,31 +152,32 @@ func flash(direction):
 
 
 func calculateSpeed(direction):
-	if direction < 0:
-		
-		if groundSpeed > 0 and is_on_floor():
-			groundSpeed -= decel
-		elif groundSpeed > -lms:
-			if is_on_floor():
-				groundSpeed -= acceleration/2
-			else:
-				groundSpeed -= acceleration/4
-		if groundSpeed <= -lms and isBoosting == false:
-			groundSpeed += acceleration/4
-
-	if direction > 0:
-		if groundSpeed <0 and is_on_floor():
-			groundSpeed += decel
-		elif groundSpeed < MAX_SPEED:
-			if is_on_floor():
-				groundSpeed += acceleration/2
-			else:
+	if !isGrinding:	
+		if direction < 0:
+			
+			if groundSpeed > 0 and is_on_floor():
+				groundSpeed -= decel
+			elif groundSpeed > -lms:
+				if is_on_floor():
+					groundSpeed -= acceleration/2
+				else:
+					groundSpeed -= acceleration/4
+			if groundSpeed <= -lms and isBoosting == false:
 				groundSpeed += acceleration/4
-		if groundSpeed >= MAX_SPEED and isBoosting == false:
-				groundSpeed -= acceleration/4 	
+
+		if direction > 0:
+			if groundSpeed <0 and is_on_floor():
+				groundSpeed += decel
+			elif groundSpeed < MAX_SPEED:
+				if is_on_floor():
+					groundSpeed += acceleration/2
+				else:
+					groundSpeed += acceleration/4
+			if groundSpeed >= MAX_SPEED and isBoosting == false:
+					groundSpeed -= acceleration/4 	
 		
 	
-	if direction == 0 and is_on_floor():
+	if direction == 0 and is_on_floor() and !isGrinding:
 		groundSpeed -= min(abs(groundSpeed), friction) * sign(groundSpeed)
 	if isBoosting and direction != 0:
 		groundSpeed = BOOST_SPEED * direction
@@ -210,6 +213,12 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		boostMeeter += 10
 	if area.has_method("rail"):
 		isGrinding = true
+		
+func _on_area_2d_area_exited(area: Area2D) -> void:
+	if area.has_method("rail"):
+		isGrinding = false
+
+		
 		
 		
 func player():
