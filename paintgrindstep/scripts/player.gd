@@ -48,10 +48,13 @@ func _physics_process(delta: float) -> void:
 		airtime = 0.0
 		jumps = 0
 		normal = get_floor_normal()
+		
+		
 
 	if Input.is_action_just_pressed("jump") and jumps<1 and airtime < 0.1:
 		velocity += normal * JUMP_VELOCITY
 		jumps = 1
+		
 	else:
 		velocity.y += gravForce 
 		if(velocity.y >= gravForce*80):
@@ -77,6 +80,11 @@ func _physics_process(delta: float) -> void:
 	anim_control(direction)
 	cameraControl(direction,camera_2d,delta)
 	move_and_slide()
+	if(is_on_floor()):
+		if(!isGrinding):
+			floor_snap_length = 45
+	else:
+		floor_snap_length = 0
 	if was_on_floor and !is_on_floor() and !Input.is_action_just_pressed("jump"):
 		coyoteTimer.start()
 	if boostMeeter >= 100: boostMeeter = 100
@@ -184,11 +192,12 @@ func calculateSpeed(direction):
 	
 
 func cameraControl(direction,Camera2D,delta):
-	var fast = 20
+	var fast = 40
 	if isBoosting:
-		fast = 40
+		fast = 80
 	else:
-		fast = 20
+		fast = 40
+	
 	if direction > 0:
 		if camera_2d.offset.x < 100:
 			camera_2d.offset.x += delta*fast
@@ -197,9 +206,9 @@ func cameraControl(direction,Camera2D,delta):
 			camera_2d.offset.x -= delta*fast
 	if direction == 0:
 		if camera_2d.offset.x < 0:
-			camera_2d.offset.x += delta*50
+			camera_2d.offset.x += delta*100
 		if camera_2d.offset.x > 0:
-			camera_2d.offset.x -= delta*50
+			camera_2d.offset.x -= delta*100
 	if camera_2d.offset.y != 0:
 		camera_2d.offset.y = 0
 

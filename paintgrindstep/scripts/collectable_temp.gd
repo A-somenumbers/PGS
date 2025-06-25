@@ -7,6 +7,7 @@ extends Area2D
 
 func _on_body_entered(body: Node2D) -> void:
 	queue_free()
+	Global.score += 20
 	
 
 func coin():

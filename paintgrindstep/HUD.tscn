@@ -22,7 +22,7 @@ modulate_color = Color(0, 0, 0, 0.65098)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wpheb"]
 bg_color = Color(0.305882, 1, 0.898039, 0.65098)
 
-[node name="Control" type="Control" node_paths=PackedStringArray("speed", "charge", "meter2")]
+[node name="Control" type="Control" node_paths=PackedStringArray("speed", "charge", "score", "meter2")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -32,6 +32,7 @@ grow_vertical = 2
 script = ExtResource("1_hv6dd")
 speed = NodePath("Speed")
 charge = NodePath("Charge")
+score = NodePath("Score")
 meter2 = NodePath("Boost")
 
 [node name="Speed" type="Label" parent="."]
@@ -46,6 +47,18 @@ layout_mode = 1
 offset_top = 64.0
 offset_right = 74.0
 offset_bottom = 109.0
+text = "yeah"
+label_settings = SubResource("LabelSettings_w7qie")
+
+[node name="Score" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -37.0
+offset_right = 37.0
+offset_bottom = 45.0
+grow_horizontal = 2
 text = "yeah"
 label_settings = SubResource("LabelSettings_w7qie")
 

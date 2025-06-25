@@ -3,12 +3,14 @@ extends Control
 @onready var player: CharacterBody2D = $"../.." 
 @export var speed : Label 
 @export var charge : Label
+@export var score : Label
 @export var meter2 : ProgressBar
 func _physics_process(delta: float) -> void:
 	speed_label()
 	meter_label()
 func speed_label():
 	speed.text = "Speed: " + str(abs(player.velocity.x))
+	score.text = "Score: " + str(Global.score)
 
 func meter_label():
 	meter2.value = round(player.boostMeeter)

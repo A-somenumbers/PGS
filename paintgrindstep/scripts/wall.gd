@@ -8,6 +8,7 @@ func _physics_process(delta: float) -> void:
 		if Global.lastCharge >= 100:
 			if Input.is_action_just_released("Charge"):
 				animated_sprite_2d.play("scribbled")
+				Global.score += 100
 				
 
 
