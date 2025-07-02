@@ -12,5 +12,5 @@ script = ExtResource("1_u8833")
 [node name="rail(type2)" parent="." instance=ExtResource("2_yl4iu")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -3.5)
+position = Vector2(0, -12)
 shape = SubResource("RectangleShape2D_1tr2j")

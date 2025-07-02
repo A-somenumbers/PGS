@@ -1,31 +1,18 @@
 [gd_scene load_steps=3 format=3 uid="uid://cfcjvjtrwq8xl"]
 
-[ext_resource type="Texture2D" uid="uid://8aup0ufukbo8" path="res://assets/brackeys_platformer_assets/sprites/rail.png" id="1_hkqs5"]
+[ext_resource type="Texture2D" uid="uid://unj363hpew78" path="res://assets/rail.png" id="1_f21vn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3u22g"]
 size = Vector2(191, 8)
 
 [node name="rail" type="AnimatableBody2D"]
 
-[node name="Sprite2D3" type="Sprite2D" parent="."]
-position = Vector2(0, 1)
-texture = ExtResource("1_hkqs5")
-region_enabled = true
-region_rect = Rect2(-1, 91, 65, 14)
-
-[node name="Sprite2D2" type="Sprite2D" parent="Sprite2D3"]
-position = Vector2(64, 12)
-texture = ExtResource("1_hkqs5")
-region_enabled = true
-region_rect = Rect2(0, 156, 64, 36)
-
-[node name="Sprite2D" type="Sprite2D" parent="Sprite2D3"]
-position = Vector2(-64, 12)
-texture = ExtResource("1_hkqs5")
-region_enabled = true
-region_rect = Rect2(0, 29, 64, 34)
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, 0)
+position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_3u22g")
 one_way_collision = true
+
+[node name="Rail" type="Sprite2D" parent="."]
+position = Vector2(0.46, 0)
+scale = Vector2(0.745, 0.98)
+texture = ExtResource("1_f21vn")
