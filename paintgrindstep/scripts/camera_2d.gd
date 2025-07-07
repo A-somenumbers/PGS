@@ -1,6 +1,6 @@
 extends Camera2D
 
-@export var randStrength: float = 30.0
+@export var randStrength: float = 15
 @export var ShakeFade = 5.0
 @onready var player: CharacterBody2D = $".."
 

@@ -1,9 +1,10 @@
-[gd_scene load_steps=33 format=3 uid="uid://cpei0qpq5a6sh"]
+[gd_scene load_steps=34 format=3 uid="uid://cpei0qpq5a6sh"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_ekskw"]
 [ext_resource type="Material" uid="uid://cvr574d7jsmpr" path="res://scenes/player.tres" id="1_jl0jb"]
 [ext_resource type="Texture2D" uid="uid://bltihtgao8r2s" path="res://assets/brackeys_platformer_assets/sprites/sonicsheetsonic.png" id="2_mucfx"]
 [ext_resource type="PackedScene" uid="uid://buro5lgnk1jbi" path="res://HUD.tscn" id="4_gwwle"]
+[ext_resource type="PackedScene" uid="uid://doxututrm5s8o" path="res://scenes/UI/charge_meter.tscn" id="5_lxcx6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k68x5"]
 atlas = ExtResource("2_mucfx")
@@ -226,6 +227,11 @@ position = Vector2(0, -26)
 sprite_frames = SubResource("SpriteFrames_ujigl")
 animation = &"grind"
 autoplay = "idle"
+
+[node name="ChargeMeter" parent="AnimatedSprite2D" instance=ExtResource("5_lxcx6")]
+offset_top = -34.0
+offset_bottom = -34.0
+scale = Vector2(0.4, 0.4)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-2.5, -21)

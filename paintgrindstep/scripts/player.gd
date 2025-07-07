@@ -193,24 +193,25 @@ func calculateSpeed(direction):
 
 func cameraControl(direction,Camera2D,delta):
 	var fast = 40
-	if isBoosting:
-		fast = 80
-	else:
-		fast = 40
-	
-	if direction > 0:
-		if camera_2d.offset.x < 100:
-			camera_2d.offset.x += delta*fast
-	if direction < 0:
-		if camera_2d.offset.x > -100:
-			camera_2d.offset.x -= delta*fast
-	if direction == 0:
-		if camera_2d.offset.x < 0:
-			camera_2d.offset.x += delta*100
-		if camera_2d.offset.x > 0:
-			camera_2d.offset.x -= delta*100
-	if camera_2d.offset.y != 0:
-		camera_2d.offset.y = 0
+	if !isGrinding:
+		if isBoosting:
+			fast = 80
+		else:
+			fast = 40
+		
+		if direction > 0:
+			if camera_2d.offset.x < 100:
+				camera_2d.offset.x += delta*fast
+		if direction < 0:
+			if camera_2d.offset.x > -100:
+				camera_2d.offset.x -= delta*fast
+		if direction == 0:
+			if camera_2d.offset.x < 0:
+				camera_2d.offset.x += delta*100
+			if camera_2d.offset.x > 0:
+				camera_2d.offset.x -= delta*100
+		if camera_2d.offset.y != 0:
+			camera_2d.offset.y = 0
 
 
 

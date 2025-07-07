@@ -1,16 +1,18 @@
-[gd_scene load_steps=17 format=4 uid="uid://oh7lnlf4bbd3"]
+[gd_scene load_steps=19 format=4 uid="uid://oh7lnlf4bbd3"]
 
 [ext_resource type="PackedScene" uid="uid://cpei0qpq5a6sh" path="res://scenes/player.tscn" id="1_ntr2f"]
 [ext_resource type="PackedScene" uid="uid://nfut3muggamv" path="res://scenes/collectable_temp.tscn" id="2_5tpci"]
 [ext_resource type="Shader" path="res://scenes/player.gdshader" id="2_yvfvm"]
-[ext_resource type="Script" path="res://scenes/camera_2d.gd" id="3_mt4e8"]
+[ext_resource type="Script" path="res://scripts/camera_2d.gd" id="3_mt4e8"]
 [ext_resource type="PackedScene" uid="uid://d0s0c7cjr71js" path="res://scenes/platform_temp.tscn" id="3_tug3d"]
 [ext_resource type="PackedScene" uid="uid://cgbu07usceklp" path="res://scenes/killzone.tscn" id="5_bglap"]
 [ext_resource type="PackedScene" uid="uid://crvbxm2vtygoa" path="res://scenes/wall.tscn" id="9_kmako"]
+[ext_resource type="PackedScene" uid="uid://jqq6dm64cf0n" path="res://scenes/UI/audio_control.tscn" id="10_hauan"]
 [ext_resource type="Texture2D" uid="uid://dom67k1si7uip" path="res://assets/Building01.png" id="10_j0hgl"]
 [ext_resource type="Texture2D" uid="uid://b4odfd7regvad" path="res://assets/building01-skinny.png" id="11_us3ht"]
 [ext_resource type="PackedScene" uid="uid://dl87xtln6sg13" path="res://scenes/real_rail.tscn" id="12_s2d8x"]
 [ext_resource type="PackedScene" uid="uid://bhdpd6fgheheh" path="res://scenes/realrailtype_2.tscn" id="12_ujvdl"]
+[ext_resource type="Texture2D" uid="uid://b1me2b6vjmxy" path="res://assets/BGs/Layer1.png" id="13_1dpxw"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ury6s"]
 resource_local_to_scene = true
@@ -66,12 +68,14 @@ position = Vector2(-1, 35)
 scale = Vector2(0.4, 0.4)
 
 [node name="Camera2D" type="Camera2D" parent="player"]
-zoom = Vector2(6, 6)
+zoom = Vector2(3, 3)
 limit_bottom = 165
 limit_smoothed = true
 position_smoothing_enabled = true
 drag_vertical_enabled = true
 script = ExtResource("3_mt4e8")
+
+[node name="AudioControl" parent="player/Camera2D" instance=ExtResource("10_hauan")]
 
 [node name="Killzone" parent="." instance=ExtResource("5_bglap")]
 position = Vector2(0, 139)
@@ -96,7 +100,7 @@ position = Vector2(1498, -80)
 scale = Vector2(2, 2)
 
 [node name="wall3" parent="walls" instance=ExtResource("9_kmako")]
-position = Vector2(1823, -77)
+position = Vector2(1813, -82)
 scale = Vector2(5.2, 2)
 
 [node name="platforms" type="Node" parent="."]
@@ -109,20 +113,8 @@ scale = Vector2(3.9536, 1)
 position = Vector2(1272, 125)
 scale = Vector2(3.9536, 1)
 
-[node name="platform_temp10" parent="platforms" instance=ExtResource("3_tug3d")]
-position = Vector2(1400, 147)
-scale = Vector2(1.01401, 0.960107)
-
-[node name="platform_temp12" parent="platforms" instance=ExtResource("3_tug3d")]
-position = Vector2(1464, 83)
-scale = Vector2(1.01401, 0.960107)
-
-[node name="platform_temp14" parent="platforms" instance=ExtResource("3_tug3d")]
-position = Vector2(1400, 19)
-scale = Vector2(1.01401, 0.960107)
-
 [node name="platform_temp13" parent="platforms" instance=ExtResource("3_tug3d")]
-position = Vector2(2109, -46)
+position = Vector2(2103, -51)
 scale = Vector2(5.8736, 1)
 
 [node name="platform_temp" parent="platforms" instance=ExtResource("3_tug3d")]
@@ -151,10 +143,6 @@ scale = Vector2(1.02821, 0.921805)
 
 [node name="rails" type="Node" parent="."]
 
-[node name="RealRail" parent="rails" instance=ExtResource("12_s2d8x")]
-position = Vector2(56, 20)
-scale = Vector2(0.4, 0.4)
-
 [node name="RealRail2" parent="rails" instance=ExtResource("12_s2d8x")]
 position = Vector2(734, 25)
 scale = Vector2(1.44001, 0.4)
@@ -165,9 +153,20 @@ rotation = -0.575959
 scale = Vector2(0.538015, 0.377277)
 
 [node name="realrailtype3" parent="rails" instance=ExtResource("12_ujvdl")]
-position = Vector2(1813, -49)
+position = Vector2(1812, -54)
 scale = Vector2(1.57802, 0.377277)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAD3/wQAAAAAAAAAAAD7/wQAAAAEAAAAAAD//wQAAAAEAAAAAAADAAQAAAAMAAAAAAD3/wgAAAAQAAAAAAADAAgAAAAcAAAAAAD7/wgAAAAUAAAAAAD//wgAAAAYAAAAAAADAAwAAAAcAAAAAAADABAAAAAcAAAAAAD//wwAAAAoAAAAAAD//xAAAAAoAAAAAAD7/wwAAAAoAAAAAAD7/xAAAAAoAAAAAAD3/wwAAAAgAAAAAAD3/xAAAAAgAAAAAAAOAAQAAAAAAAAAAAASAAQAAAAMAAAAAAAOAAgAAAAgAAAAAAAOAAwAAAAgAAAAAAAOABAAAAAgAAAAAAAOABQAAAAgAAAAAAAOABgAAAAgAAAAAAASABgAAAAsAAAAAAASABQAAAAsAAAAAAASABAAAAAsAAAAAAASAAwAAAAsAAAAAAASAAgAAAAsAAAAAAAbAAMAAAAAAAAAAAAfAAMAAAAEAAAAAAAjAAMAAAAEAAAAAAA4AAMAAAAEAAAAAAA8AAMAAAAIAAAAAABAAAMAAAAMAAAAAABNAAkAAAAAAAAAAABRAAkAAAAMAAAAAABXAP7/AAAAAAAAAABbAP7/AAAEAAAAAABfAP7/AAAIAAAAAABjAP7/AAAIAAAAAABXAAIAAAAQAAAAAABXAAYAAAAgAAAAAABbAAYAAAAkAAAAAABXAAoAAAAQAAAAAABbAAIAAAAYAAAAAABfAAIAAAAYAAAAAABfAAYAAAAoAAAAAABbAAoAAAAoAAAAAABfAAoAAAAoAAAAAABjAAIAAAAoAAAAAABjAAYAAAAoAAAAAABjAAoAAAAoAAAAAAA=")
+tile_map_data = PackedByteArray("AAD3/wQAAAAAAAAAAAD7/wQAAAAEAAAAAAD//wQAAAAEAAAAAAADAAQAAAAMAAAAAAD3/wgAAAAQAAAAAAADAAgAAAAcAAAAAAD7/wgAAAAkAAAAAAD//wgAAAAYAAAAAAADAAwAAAAcAAAAAAADABAAAAAcAAAAAAAOAAQAAAAAAAAAAAASAAQAAAAMAAAAAAAOABQAAAAgAAAAAAAOABgAAAAgAAAAAAASABgAAAAsAAAAAAASABQAAAAsAAAAAAAbAAMAAAAAAAAAAAAfAAMAAAAEAAAAAAAjAAMAAAAEAAAAAAA4AAMAAAAEAAAAAAA8AAMAAAAIAAAAAABAAAMAAAAMAAAAAABNAAkAAAAAAAAAAABRAAkAAAAMAAAAAABXAP7/AAAAAAAAAABbAP7/AAAEAAAAAABfAP7/AAAIAAAAAABjAP7/AAAIAAAAAABXAAIAAAAQAAAAAABbAAIAAAAYAAAAAABfAAIAAAAYAAAAAABjAAIAAAAcAAAAAAD7/wwAAAAkAAAAAAD//wwAAAAkAAAAAAD//xAAAAAkAAAAAAD7/xAAAAAkAAAAAAD3/wwAAAAQAAAAAAD3/xAAAAAQAAAAAAAOAAgAAAAkAAAAAAASAAgAAAAkAAAAAAASAAwAAAAkAAAAAAASABAAAAAkAAAAAAAOABAAAAAkAAAAAAAOAAwAAAAkAAAAAAAbAAcAAAAgAAAAAAAfAAcAAAAUAAAAAAAjAAcAAAAsAAAAAAAbAAsAAAAQAAAAAAAjAAsAAAAcAAAAAAAfAAsAAAAYAAAAAAAfAA8AAAAYAAAAAAAbAA8AAAAgAAAAAAAjAA8AAAAsAAAAAAAjABMAAAAsAAAAAAAjABcAAAAsAAAAAAAjABsAAAAsAAAAAAAbABMAAAAgAAAAAAAbABcAAAAgAAAAAAAbABsAAAAgAAAAAAAfABMAAAAkAAAAAAAfABcAAAAkAAAAAAAfABsAAAAkAAAAAAD7/xQAAAAkAAAAAAD//xQAAAAkAAAAAAD7/xgAAAAkAAAAAAD//xgAAAAkAAAAAAD//xwAAAAkAAAAAAD7/xwAAAAkAAAAAAD7/yAAAAAkAAAAAAD//yAAAAAkAAAAAAADABQAAAAsAAAAAAADABgAAAAsAAAAAAADABwAAAAsAAAAAAADACAAAAAsAAAAAAD3/xQAAAAgAAAAAAD3/xgAAAAgAAAAAAD3/xwAAAAgAAAAAAD3/yAAAAAgAAAAAAB/AP7/AAAEAAAAAACDAP7/AAAEAAAAAACHAP7/AAAMAAAAAAB/AAIAAAAEAAAAAAB/AAYAAAAEAAAAAACDAAIAAAAEAAAAAACDAAYAAAAEAAAAAAB/AAoAAAAEAAAAAACDAAoAAAAEAAAAAACHAAIAAAAEAAAAAACHAAYAAAAEAAAAAACHAAoAAAAEAAAAAABXAAYAAAAEAAAAAABbAAYAAAAEAAAAAABfAAYAAAAEAAAAAABjAAYAAAAEAAAAAABjAAoAAAAEAAAAAABfAAoAAAAEAAAAAABbAAoAAAAEAAAAAABXAAoAAAAEAAAAAABNAA0AAAAEAAAAAABRAA0AAAAEAAAAAABRABEAAAAEAAAAAABNABEAAAAEAAAAAABNABUAAAAEAAAAAABRABUAAAAEAAAAAABNABkAAAAEAAAAAABRABkAAAAEAAAAAABRAB0AAAAEAAAAAABNAB0AAAAEAAAAAAA4AAcAAAAEAAAAAAA8AAcAAAAEAAAAAABAAAcAAAAEAAAAAABAAAsAAAAEAAAAAAA8AAsAAAAEAAAAAAA4AAsAAAAEAAAAAAA4AA8AAAAEAAAAAAA8AA8AAAAEAAAAAABAAA8AAAAEAAAAAABAABMAAAAEAAAAAAA8ABMAAAAEAAAAAAA4ABMAAAAEAAAAAAA4ABcAAAAEAAAAAAA8ABcAAAAEAAAAAABAABcAAAAEAAAAAABAABsAAAAEAAAAAAA8ABsAAAAEAAAAAAA4ABsAAAAEAAAAAAA4AB8AAAAEAAAAAAA8AB8AAAAEAAAAAABAAB8AAAAEAAAAAAB/AA4AAAAEAAAAAAB/ABIAAAAEAAAAAAB/ABYAAAAEAAAAAAB/ABoAAAAEAAAAAACDAA4AAAAEAAAAAACDABIAAAAEAAAAAACDABYAAAAEAAAAAACDABoAAAAEAAAAAACHAA4AAAAEAAAAAACHABIAAAAEAAAAAACHABYAAAAEAAAAAACHABoAAAAEAAAAAABXAA4AAAAEAAAAAABbAA4AAAAEAAAAAABfAA4AAAAEAAAAAABjAA4AAAAEAAAAAABjABIAAAAEAAAAAABfABIAAAAEAAAAAABbABIAAAAEAAAAAABXABIAAAAEAAAAAABXABYAAAAEAAAAAABbABYAAAAEAAAAAABfABYAAAAEAAAAAABjABYAAAAEAAAAAAA=")
 tile_set = SubResource("TileSet_26dex")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(-394, -640)
+motion_scale = Vector2(0.58, 0.58)
+motion_mirroring = Vector2(1024, 1024)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture = ExtResource("13_1dpxw")
+centered = false

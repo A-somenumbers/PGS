@@ -1,18 +1,17 @@
 [gd_scene load_steps=6 format=3 uid="uid://buro5lgnk1jbi"]
 
 [ext_resource type="Script" path="res://scripts/control.gd" id="1_hv6dd"]
+[ext_resource type="Texture2D" uid="uid://6vff6t2vj3n8" path="res://assets/meter.png" id="2_1fvq5"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_w7qie"]
 font_size = 32
 font_color = Color(0, 0, 0, 1)
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_pt0wn"]
-
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vbml1"]
 content_margin_left = 0.0
 content_margin_top = 0.0
 content_margin_right = 0.0
-texture = SubResource("CanvasTexture_pt0wn")
+texture = ExtResource("2_1fvq5")
 expand_margin_left = 5.0
 expand_margin_top = 5.0
 expand_margin_right = 5.0
@@ -22,7 +21,7 @@ modulate_color = Color(0, 0, 0, 0.65098)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wpheb"]
 bg_color = Color(0.305882, 1, 0.898039, 0.65098)
 
-[node name="Control" type="Control" node_paths=PackedStringArray("speed", "charge", "score", "meter2")]
+[node name="Control" type="Control" node_paths=PackedStringArray("speed", "score", "meter2")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -31,7 +30,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_hv6dd")
 speed = NodePath("Speed")
-charge = NodePath("Charge")
 score = NodePath("Score")
 meter2 = NodePath("Boost")
 
@@ -39,14 +37,6 @@ meter2 = NodePath("Boost")
 layout_mode = 1
 offset_right = 74.0
 offset_bottom = 45.0
-text = "yeah"
-label_settings = SubResource("LabelSettings_w7qie")
-
-[node name="Charge" type="Label" parent="."]
-layout_mode = 1
-offset_top = 64.0
-offset_right = 74.0
-offset_bottom = 109.0
 text = "yeah"
 label_settings = SubResource("LabelSettings_w7qie")
 

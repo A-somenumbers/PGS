@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://doxututrm5s8o"]
+
+[ext_resource type="Script" path="res://scripts/charge_meter.gd" id="1_5jgl3"]
+[ext_resource type="Texture2D" uid="uid://btr1ox0kmxwox" path="res://assets/chargeBarEmpty.png" id="2_55e3u"]
+[ext_resource type="Texture2D" uid="uid://chitbogp2rckt" path="res://assets/chargeBarOutline.png" id="3_5jt62"]
+[ext_resource type="Texture2D" uid="uid://cuykcs0dvx5qb" path="res://assets/chargeBarFill.png" id="4_to6we"]
+
+[node name="ChargeMeter" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5jgl3")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+max_value = 33.0
+fill_mode = 4
+texture_under = ExtResource("2_55e3u")
+texture_over = ExtResource("3_5jt62")
+texture_progress = ExtResource("4_to6we")
