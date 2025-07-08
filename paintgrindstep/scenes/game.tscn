@@ -69,6 +69,7 @@ scale = Vector2(0.4, 0.4)
 
 [node name="Camera2D" type="Camera2D" parent="player"]
 zoom = Vector2(3, 3)
+process_callback = 0
 limit_bottom = 165
 limit_smoothed = true
 position_smoothing_enabled = true
@@ -163,10 +164,19 @@ tile_set = SubResource("TileSet_26dex")
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-position = Vector2(-394, -640)
+position = Vector2(-256, -811)
 motion_scale = Vector2(0.58, 0.58)
 motion_mirroring = Vector2(1024, 1024)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture = ExtResource("13_1dpxw")
+centered = false
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(-260, -809)
+motion_scale = Vector2(0.58, 0.58)
+motion_mirroring = Vector2(1024, 1024)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
 texture = ExtResource("13_1dpxw")
 centered = false
