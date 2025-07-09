@@ -1,25 +1,25 @@
 [gd_scene load_steps=9 format=3 uid="uid://ceykl7cb03i73"]
 
-[ext_resource type="Texture2D" uid="uid://cx51eqwtf8lp6" path="res://assets/brackeys_platformer_assets/sprites/d7w9qcu-c10e39bc-fa81-454c-8bcb-571336892aa0.png" id="1_tgk0x"]
+[ext_resource type="Texture2D" uid="uid://cx51eqwtf8lp6" path="res://assets/brackeys_platformer_assets/sprites/d7w9qcu-c10e39bc-fa81-454c-8bcb-571336892aa0.png" id="1_srsgh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i7of6"]
-atlas = ExtResource("1_tgk0x")
+atlas = ExtResource("1_srsgh")
 region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hma3s"]
-atlas = ExtResource("1_tgk0x")
+atlas = ExtResource("1_srsgh")
 region = Rect2(128, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_swukj"]
-atlas = ExtResource("1_tgk0x")
+atlas = ExtResource("1_srsgh")
 region = Rect2(256, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_67ko5"]
-atlas = ExtResource("1_tgk0x")
+atlas = ExtResource("1_srsgh")
 region = Rect2(384, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g4kuv"]
-atlas = ExtResource("1_tgk0x")
+atlas = ExtResource("1_srsgh")
 region = Rect2(512, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_eg7pb"]

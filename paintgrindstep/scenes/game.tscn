@@ -1,18 +1,20 @@
-[gd_scene load_steps=19 format=4 uid="uid://oh7lnlf4bbd3"]
+[gd_scene load_steps=21 format=4 uid="uid://oh7lnlf4bbd3"]
 
-[ext_resource type="PackedScene" uid="uid://cpei0qpq5a6sh" path="res://scenes/player.tscn" id="1_ntr2f"]
-[ext_resource type="PackedScene" uid="uid://nfut3muggamv" path="res://scenes/collectable_temp.tscn" id="2_5tpci"]
-[ext_resource type="Shader" path="res://scenes/player.gdshader" id="2_yvfvm"]
+[ext_resource type="PackedScene" uid="uid://cpei0qpq5a6sh" path="res://scenes/player/player.tscn" id="1_ntr2f"]
+[ext_resource type="PackedScene" uid="uid://nfut3muggamv" path="res://scenes/GameObj/collectable_temp.tscn" id="2_5tpci"]
+[ext_resource type="Shader" path="res://scenes/player/player.gdshader" id="2_yvfvm"]
 [ext_resource type="Script" path="res://scripts/camera_2d.gd" id="3_mt4e8"]
-[ext_resource type="PackedScene" uid="uid://d0s0c7cjr71js" path="res://scenes/platform_temp.tscn" id="3_tug3d"]
-[ext_resource type="PackedScene" uid="uid://cgbu07usceklp" path="res://scenes/killzone.tscn" id="5_bglap"]
-[ext_resource type="PackedScene" uid="uid://crvbxm2vtygoa" path="res://scenes/wall.tscn" id="9_kmako"]
+[ext_resource type="PackedScene" uid="uid://d0s0c7cjr71js" path="res://scenes/GameObj/platform_temp.tscn" id="3_tug3d"]
+[ext_resource type="PackedScene" uid="uid://cgbu07usceklp" path="res://scenes/GameObj/killzone.tscn" id="5_bglap"]
+[ext_resource type="PackedScene" uid="uid://crvbxm2vtygoa" path="res://scenes/GameObj/wall.tscn" id="9_kmako"]
 [ext_resource type="PackedScene" uid="uid://jqq6dm64cf0n" path="res://scenes/UI/audio_control.tscn" id="10_hauan"]
 [ext_resource type="Texture2D" uid="uid://dom67k1si7uip" path="res://assets/Building01.png" id="10_j0hgl"]
 [ext_resource type="Texture2D" uid="uid://b4odfd7regvad" path="res://assets/building01-skinny.png" id="11_us3ht"]
-[ext_resource type="PackedScene" uid="uid://dl87xtln6sg13" path="res://scenes/real_rail.tscn" id="12_s2d8x"]
-[ext_resource type="PackedScene" uid="uid://bhdpd6fgheheh" path="res://scenes/realrailtype_2.tscn" id="12_ujvdl"]
+[ext_resource type="PackedScene" uid="uid://dl87xtln6sg13" path="res://scenes/player/real_rail.tscn" id="12_s2d8x"]
+[ext_resource type="PackedScene" uid="uid://bhdpd6fgheheh" path="res://scenes/GameObj/realrailtype_2.tscn" id="12_ujvdl"]
 [ext_resource type="Texture2D" uid="uid://b1me2b6vjmxy" path="res://assets/BGs/Layer1.png" id="13_1dpxw"]
+[ext_resource type="Texture2D" uid="uid://cif4ukul2ddb7" path="res://assets/BGs/Layer2.png" id="14_wmu0f"]
+[ext_resource type="PackedScene" uid="uid://dx6p2m6gjq46o" path="res://scenes/UI/pause_menu.tscn" id="15_t04on"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ury6s"]
 resource_local_to_scene = true
@@ -174,9 +176,13 @@ centered = false
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
 position = Vector2(-260, -809)
-motion_scale = Vector2(0.58, 0.58)
+motion_scale = Vector2(0.75, 0.75)
 motion_mirroring = Vector2(1024, 1024)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
-texture = ExtResource("13_1dpxw")
+texture = ExtResource("14_wmu0f")
 centered = false
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("15_t04on")]

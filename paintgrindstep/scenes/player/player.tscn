@@ -1,9 +1,9 @@
 [gd_scene load_steps=19 format=3 uid="uid://cpei0qpq5a6sh"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_ekskw"]
-[ext_resource type="Material" uid="uid://cvr574d7jsmpr" path="res://scenes/player.tres" id="1_jl0jb"]
+[ext_resource type="Material" uid="uid://cvr574d7jsmpr" path="res://scenes/player/player.tres" id="1_jl0jb"]
 [ext_resource type="Texture2D" uid="uid://c3uv7x5cs80fs" path="res://assets/tempcharacter.png" id="3_jiavk"]
-[ext_resource type="PackedScene" uid="uid://buro5lgnk1jbi" path="res://HUD.tscn" id="4_gwwle"]
+[ext_resource type="PackedScene" uid="uid://buro5lgnk1jbi" path="res://scenes/UI/HUD.tscn" id="4_gwwle"]
 [ext_resource type="PackedScene" uid="uid://doxututrm5s8o" path="res://scenes/UI/charge_meter.tscn" id="5_lxcx6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0on2d"]

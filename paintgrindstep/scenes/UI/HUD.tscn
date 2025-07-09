@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://buro5lgnk1jbi"]
 
-[ext_resource type="Script" path="res://scripts/control.gd" id="1_hv6dd"]
-[ext_resource type="Texture2D" uid="uid://6vff6t2vj3n8" path="res://assets/meter.png" id="2_1fvq5"]
+[ext_resource type="Script" path="res://scripts/control.gd" id="1_35wq7"]
+[ext_resource type="Texture2D" uid="uid://6vff6t2vj3n8" path="res://assets/meter.png" id="2_obuju"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_w7qie"]
 font_size = 32
@@ -11,7 +11,7 @@ font_color = Color(0, 0, 0, 1)
 content_margin_left = 0.0
 content_margin_top = 0.0
 content_margin_right = 0.0
-texture = ExtResource("2_1fvq5")
+texture = ExtResource("2_obuju")
 expand_margin_left = 5.0
 expand_margin_top = 5.0
 expand_margin_right = 5.0
@@ -28,19 +28,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_hv6dd")
+script = ExtResource("1_35wq7")
 speed = NodePath("Speed")
 score = NodePath("Score")
 meter2 = NodePath("Boost")
 
 [node name="Speed" type="Label" parent="."]
-layout_mode = 1
-offset_right = 74.0
-offset_bottom = 45.0
-text = "yeah"
-label_settings = SubResource("LabelSettings_w7qie")
-
-[node name="Score" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -49,6 +42,13 @@ offset_left = -37.0
 offset_right = 37.0
 offset_bottom = 45.0
 grow_horizontal = 2
+text = "yeah"
+label_settings = SubResource("LabelSettings_w7qie")
+
+[node name="Score" type="Label" parent="."]
+layout_mode = 1
+offset_right = 74.0
+offset_bottom = 45.0
 text = "yeah"
 label_settings = SubResource("LabelSettings_w7qie")
 
@@ -70,3 +70,9 @@ theme_override_styles/background = SubResource("StyleBoxTexture_vbml1")
 theme_override_styles/fill = SubResource("StyleBoxFlat_wpheb")
 value = 60.0
 show_percentage = false
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.01
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
