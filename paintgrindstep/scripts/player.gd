@@ -54,6 +54,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("jump") and jumps<1 and airtime < 0.1:
 		velocity += normal * JUMP_VELOCITY
 		jumps = 1
+		$Audio/jump.play()
 		
 	else:
 		velocity.y += gravForce 

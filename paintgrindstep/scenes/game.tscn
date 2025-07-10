@@ -78,8 +78,6 @@ position_smoothing_enabled = true
 drag_vertical_enabled = true
 script = ExtResource("3_mt4e8")
 
-[node name="AudioControl" parent="player/Camera2D" instance=ExtResource("10_hauan")]
-
 [node name="Killzone" parent="." instance=ExtResource("5_bglap")]
 position = Vector2(0, 139)
 
@@ -186,3 +184,5 @@ centered = false
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("15_t04on")]
+
+[node name="AudioControl" parent="." instance=ExtResource("10_hauan")]

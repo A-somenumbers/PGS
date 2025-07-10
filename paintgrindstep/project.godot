@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="PaintGrindStep"
-run/main_scene="res://scenes/game.tscn"
+run/main_scene="res://scenes/UI/start_menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -21,6 +21,8 @@ Global="*res://scripts/GlobalSettings.gd"
 
 [display]
 
+window/size/viewport_width=1920
+window/size/viewport_height=1080
 window/stretch/mode="canvas_items"
 
 [input]
@@ -59,4 +61,7 @@ Pause={
 
 [rendering]
 
-textures/canvas_textures/default_texture_filter=0
+textures/canvas_textures/default_texture_repeat=1
+textures/lossless_compression/force_png=true
+2d/snap/snap_2d_transforms_to_pixel=true
+2d/snap/snap_2d_vertices_to_pixel=true

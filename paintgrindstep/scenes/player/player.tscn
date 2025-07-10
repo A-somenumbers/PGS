@@ -1,10 +1,12 @@
-[gd_scene load_steps=19 format=3 uid="uid://cpei0qpq5a6sh"]
+[gd_scene load_steps=21 format=3 uid="uid://cpei0qpq5a6sh"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_ekskw"]
 [ext_resource type="Material" uid="uid://cvr574d7jsmpr" path="res://scenes/player/player.tres" id="1_jl0jb"]
 [ext_resource type="Texture2D" uid="uid://c3uv7x5cs80fs" path="res://assets/tempcharacter.png" id="3_jiavk"]
 [ext_resource type="PackedScene" uid="uid://buro5lgnk1jbi" path="res://scenes/UI/HUD.tscn" id="4_gwwle"]
 [ext_resource type="PackedScene" uid="uid://doxututrm5s8o" path="res://scenes/UI/charge_meter.tscn" id="5_lxcx6"]
+[ext_resource type="AudioStream" uid="uid://fipnv7tkui1l" path="res://assets/audio/jump.wav" id="6_d1w4k"]
+[ext_resource type="AudioStream" uid="uid://dlbm4ubjo2fag" path="res://assets/audio/spray.wav" id="7_2ooay"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0on2d"]
 atlas = ExtResource("3_jiavk")
@@ -151,6 +153,14 @@ one_shot = true
 
 [node name="coyote" type="Timer" parent="."]
 one_shot = true
+
+[node name="Audio" type="Node" parent="."]
+
+[node name="jump" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("6_d1w4k")
+
+[node name="Spray" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("7_2ooay")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

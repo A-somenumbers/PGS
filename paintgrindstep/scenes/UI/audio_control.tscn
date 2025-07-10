@@ -1,12 +1,14 @@
 [gd_scene load_steps=3 format=3 uid="uid://jqq6dm64cf0n"]
 
 [ext_resource type="Script" path="res://scripts/audio_control.gd" id="1_qpu0g"]
-[ext_resource type="AudioStream" uid="uid://qw48ty3ygh7r" path="res://assets/audio/cw_amen01_175.wav" id="2_g20mk"]
+[ext_resource type="AudioStream" uid="uid://d08d355un8bap" path="res://assets/BGs/youtube_nS8rFr8xkJg_audio.mp3" id="2_x5bil"]
 
 [node name="AudioControl" type="Node"]
 script = ExtResource("1_qpu0g")
 
 [node name="AmenBreak" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_g20mk")
-volume_db = -20.84
-pitch_scale = 1.25
+stream = ExtResource("2_x5bil")
+volume_db = -27.69
+autoplay = true
+
+[connection signal="finished" from="AmenBreak" to="." method="_on_amen_break_finished"]
