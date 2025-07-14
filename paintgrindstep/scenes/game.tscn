@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://oh7lnlf4bbd3"]
+[gd_scene load_steps=17 format=3 uid="uid://oh7lnlf4bbd3"]
 
 [ext_resource type="PackedScene" uid="uid://cpei0qpq5a6sh" path="res://scenes/player/player.tscn" id="1_ntr2f"]
 [ext_resource type="PackedScene" uid="uid://nfut3muggamv" path="res://scenes/GameObj/collectable_temp.tscn" id="2_5tpci"]
@@ -7,9 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://d0s0c7cjr71js" path="res://scenes/GameObj/platform_temp.tscn" id="3_tug3d"]
 [ext_resource type="PackedScene" uid="uid://cgbu07usceklp" path="res://scenes/GameObj/killzone.tscn" id="5_bglap"]
 [ext_resource type="PackedScene" uid="uid://crvbxm2vtygoa" path="res://scenes/GameObj/wall.tscn" id="9_kmako"]
+[ext_resource type="PackedScene" uid="uid://k8s0hesiwy80" path="res://assets/Citytiles.tscn" id="10_0kqx8"]
 [ext_resource type="PackedScene" uid="uid://jqq6dm64cf0n" path="res://scenes/UI/audio_control.tscn" id="10_hauan"]
-[ext_resource type="Texture2D" uid="uid://dom67k1si7uip" path="res://assets/Building01.png" id="10_j0hgl"]
-[ext_resource type="Texture2D" uid="uid://b4odfd7regvad" path="res://assets/building01-skinny.png" id="11_us3ht"]
 [ext_resource type="PackedScene" uid="uid://dl87xtln6sg13" path="res://scenes/player/real_rail.tscn" id="12_s2d8x"]
 [ext_resource type="PackedScene" uid="uid://bhdpd6fgheheh" path="res://scenes/GameObj/realrailtype_2.tscn" id="12_ujvdl"]
 [ext_resource type="Texture2D" uid="uid://b1me2b6vjmxy" path="res://assets/BGs/Layer1.png" id="13_1dpxw"]
@@ -23,44 +22,6 @@ shader_parameter/flash_color = Color(0.19429, 0.402692, 1, 1)
 shader_parameter/flash_modifier = 0.0
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_oar1u"]
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nlbs5"]
-texture = ExtResource("10_j0hgl")
-0:0/size_in_atlas = Vector2i(4, 4)
-0:0/0 = 0
-4:0/size_in_atlas = Vector2i(4, 4)
-4:0/0 = 0
-8:0/size_in_atlas = Vector2i(4, 4)
-8:0/0 = 0
-12:0/size_in_atlas = Vector2i(4, 4)
-12:0/0 = 0
-16:0/size_in_atlas = Vector2i(4, 4)
-16:0/0 = 0
-20:0/size_in_atlas = Vector2i(4, 4)
-20:0/0 = 0
-24:0/size_in_atlas = Vector2i(4, 4)
-24:0/0 = 0
-28:0/size_in_atlas = Vector2i(4, 4)
-28:0/0 = 0
-32:0/size_in_atlas = Vector2i(4, 4)
-32:0/0 = 0
-36:0/size_in_atlas = Vector2i(4, 4)
-36:0/0 = 0
-40:0/size_in_atlas = Vector2i(4, 4)
-40:0/0 = 0
-44:0/size_in_atlas = Vector2i(4, 4)
-44:0/0 = 0
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_63g1g"]
-texture = ExtResource("11_us3ht")
-0:0/size_in_atlas = Vector2i(4, 4)
-0:0/0 = 0
-4:0/size_in_atlas = Vector2i(4, 4)
-4:0/0 = 0
-
-[sub_resource type="TileSet" id="TileSet_26dex"]
-sources/0 = SubResource("TileSetAtlasSource_nlbs5")
-sources/1 = SubResource("TileSetAtlasSource_63g1g")
 
 [node name="Game" type="Node2D"]
 
@@ -157,9 +118,7 @@ scale = Vector2(0.538015, 0.377277)
 position = Vector2(1812, -54)
 scale = Vector2(1.57802, 0.377277)
 
-[node name="TileMapLayer" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAD3/wQAAAAAAAAAAAD7/wQAAAAEAAAAAAD//wQAAAAEAAAAAAADAAQAAAAMAAAAAAD3/wgAAAAQAAAAAAADAAgAAAAcAAAAAAD7/wgAAAAkAAAAAAD//wgAAAAYAAAAAAADAAwAAAAcAAAAAAADABAAAAAcAAAAAAAOAAQAAAAAAAAAAAASAAQAAAAMAAAAAAAOABQAAAAgAAAAAAAOABgAAAAgAAAAAAASABgAAAAsAAAAAAASABQAAAAsAAAAAAAbAAMAAAAAAAAAAAAfAAMAAAAEAAAAAAAjAAMAAAAEAAAAAAA4AAMAAAAEAAAAAAA8AAMAAAAIAAAAAABAAAMAAAAMAAAAAABNAAkAAAAAAAAAAABRAAkAAAAMAAAAAABXAP7/AAAAAAAAAABbAP7/AAAEAAAAAABfAP7/AAAIAAAAAABjAP7/AAAIAAAAAABXAAIAAAAQAAAAAABbAAIAAAAYAAAAAABfAAIAAAAYAAAAAABjAAIAAAAcAAAAAAD7/wwAAAAkAAAAAAD//wwAAAAkAAAAAAD//xAAAAAkAAAAAAD7/xAAAAAkAAAAAAD3/wwAAAAQAAAAAAD3/xAAAAAQAAAAAAAOAAgAAAAkAAAAAAASAAgAAAAkAAAAAAASAAwAAAAkAAAAAAASABAAAAAkAAAAAAAOABAAAAAkAAAAAAAOAAwAAAAkAAAAAAAbAAcAAAAgAAAAAAAfAAcAAAAUAAAAAAAjAAcAAAAsAAAAAAAbAAsAAAAQAAAAAAAjAAsAAAAcAAAAAAAfAAsAAAAYAAAAAAAfAA8AAAAYAAAAAAAbAA8AAAAgAAAAAAAjAA8AAAAsAAAAAAAjABMAAAAsAAAAAAAjABcAAAAsAAAAAAAjABsAAAAsAAAAAAAbABMAAAAgAAAAAAAbABcAAAAgAAAAAAAbABsAAAAgAAAAAAAfABMAAAAkAAAAAAAfABcAAAAkAAAAAAAfABsAAAAkAAAAAAD7/xQAAAAkAAAAAAD//xQAAAAkAAAAAAD7/xgAAAAkAAAAAAD//xgAAAAkAAAAAAD//xwAAAAkAAAAAAD7/xwAAAAkAAAAAAD7/yAAAAAkAAAAAAD//yAAAAAkAAAAAAADABQAAAAsAAAAAAADABgAAAAsAAAAAAADABwAAAAsAAAAAAADACAAAAAsAAAAAAD3/xQAAAAgAAAAAAD3/xgAAAAgAAAAAAD3/xwAAAAgAAAAAAD3/yAAAAAgAAAAAAB/AP7/AAAEAAAAAACDAP7/AAAEAAAAAACHAP7/AAAMAAAAAAB/AAIAAAAEAAAAAAB/AAYAAAAEAAAAAACDAAIAAAAEAAAAAACDAAYAAAAEAAAAAAB/AAoAAAAEAAAAAACDAAoAAAAEAAAAAACHAAIAAAAEAAAAAACHAAYAAAAEAAAAAACHAAoAAAAEAAAAAABXAAYAAAAEAAAAAABbAAYAAAAEAAAAAABfAAYAAAAEAAAAAABjAAYAAAAEAAAAAABjAAoAAAAEAAAAAABfAAoAAAAEAAAAAABbAAoAAAAEAAAAAABXAAoAAAAEAAAAAABNAA0AAAAEAAAAAABRAA0AAAAEAAAAAABRABEAAAAEAAAAAABNABEAAAAEAAAAAABNABUAAAAEAAAAAABRABUAAAAEAAAAAABNABkAAAAEAAAAAABRABkAAAAEAAAAAABRAB0AAAAEAAAAAABNAB0AAAAEAAAAAAA4AAcAAAAEAAAAAAA8AAcAAAAEAAAAAABAAAcAAAAEAAAAAABAAAsAAAAEAAAAAAA8AAsAAAAEAAAAAAA4AAsAAAAEAAAAAAA4AA8AAAAEAAAAAAA8AA8AAAAEAAAAAABAAA8AAAAEAAAAAABAABMAAAAEAAAAAAA8ABMAAAAEAAAAAAA4ABMAAAAEAAAAAAA4ABcAAAAEAAAAAAA8ABcAAAAEAAAAAABAABcAAAAEAAAAAABAABsAAAAEAAAAAAA8ABsAAAAEAAAAAAA4ABsAAAAEAAAAAAA4AB8AAAAEAAAAAAA8AB8AAAAEAAAAAABAAB8AAAAEAAAAAAB/AA4AAAAEAAAAAAB/ABIAAAAEAAAAAAB/ABYAAAAEAAAAAAB/ABoAAAAEAAAAAACDAA4AAAAEAAAAAACDABIAAAAEAAAAAACDABYAAAAEAAAAAACDABoAAAAEAAAAAACHAA4AAAAEAAAAAACHABIAAAAEAAAAAACHABYAAAAEAAAAAACHABoAAAAEAAAAAABXAA4AAAAEAAAAAABbAA4AAAAEAAAAAABfAA4AAAAEAAAAAABjAA4AAAAEAAAAAABjABIAAAAEAAAAAABfABIAAAAEAAAAAABbABIAAAAEAAAAAABXABIAAAAEAAAAAABXABYAAAAEAAAAAABbABYAAAAEAAAAAABfABYAAAAEAAAAAABjABYAAAAEAAAAAAA=")
-tile_set = SubResource("TileSet_26dex")
+[node name="TileMapLayer" parent="." instance=ExtResource("10_0kqx8")]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -169,6 +128,7 @@ motion_scale = Vector2(0.58, 0.58)
 motion_mirroring = Vector2(1024, 1024)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(-80, 45)
 texture = ExtResource("13_1dpxw")
 centered = false
 

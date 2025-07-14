@@ -1,0 +1,74 @@
+[gd_scene load_steps=12 format=4 uid="uid://b0avjnk0bttqs"]
+
+[ext_resource type="PackedScene" uid="uid://k8s0hesiwy80" path="res://assets/Citytiles.tscn" id="1_ts7pn"]
+[ext_resource type="PackedScene" uid="uid://d0s0c7cjr71js" path="res://scenes/GameObj/platform_temp.tscn" id="3_wsuel"]
+[ext_resource type="PackedScene" uid="uid://cpei0qpq5a6sh" path="res://scenes/player/player.tscn" id="4_y6fvv"]
+[ext_resource type="Shader" path="res://scenes/player/player.gdshader" id="5_yrn00"]
+[ext_resource type="Script" path="res://scripts/camera_2d.gd" id="6_lyshr"]
+[ext_resource type="PackedScene" uid="uid://dx6p2m6gjq46o" path="res://scenes/UI/pause_menu.tscn" id="7_n8486"]
+[ext_resource type="PackedScene" uid="uid://cgbu07usceklp" path="res://scenes/GameObj/killzone.tscn" id="8_eikgc"]
+[ext_resource type="PackedScene" uid="uid://jqq6dm64cf0n" path="res://scenes/UI/audio_control.tscn" id="9_6itdh"]
+[ext_resource type="PackedScene" uid="uid://dl87xtln6sg13" path="res://scenes/player/real_rail.tscn" id="9_lyvn1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ov3hf"]
+resource_local_to_scene = true
+shader = ExtResource("5_yrn00")
+shader_parameter/flash_color = Color(0.19429, 0.402692, 1, 1)
+shader_parameter/flash_modifier = 0.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_e48xg"]
+
+[node name="HubWorld" type="Node2D"]
+
+[node name="TileMapLayer" parent="." instance=ExtResource("1_ts7pn")]
+tile_map_data = PackedByteArray("AAD3/wQAAAAIAAAAAAD7/wQAAAAEAAAAAAD//wQAAAAEAAAAAAADAAQAAAAEAAAAAAD3/wgAAAAUAAAAAAADAAgAAAAkAAAAAAD7/wgAAAAkAAAAAAD//wgAAAAkAAAAAAADAAwAAAAYAAAAAAADABAAAAAYAAAAAAD7/wwAAAAUAAAAAAD//wwAAAAYAAAAAAD//xAAAAAUAAAAAAD7/xAAAAAYAAAAAAD3/wwAAAAkAAAAAAD3/xAAAAAkAAAAAAD7/xQAAAAYAAAAAAD//xQAAAAYAAAAAAD7/xgAAAAYAAAAAAD//xgAAAAYAAAAAAD//xwAAAAYAAAAAAD7/xwAAAAYAAAAAAADABQAAAAUAAAAAAADABgAAAAYAAAAAAADABwAAAAYAAAAAAD3/xQAAAAkAAAAAAD3/xgAAAAkAAAAAAD3/xwAAAAkAAAAAAAHAAQAAAAIAAAAAAALAAQAAAAIAAAAAAAPAAQAAAAIAAAAAAATAAQAAAAIAAAAAAAXAAQAAAAMAAAAAADz/wQAAAAAAAAAAADd//v/AAAMAAAAAADZ//v/AAAIAAAAAADV//v/AAAAAAAAAADZ////AAAIAAAAAADZ/wMAAAAcAAAAAADZ/wcAAAAIAAAAAADZ/wsAAAAIAAAAAADZ/w8AAAAIAAAAAADZ/xMAAAAIAAAAAADV////AAAgAAAAAADV/wMAAAAgAAAAAADV/wcAAAAgAAAAAADV/wsAAAAgAAAAAADV/w8AAAAgAAAAAADz/wgAAAAgAAAAAADz/wwAAAAgAAAAAADz/xAAAAAgAAAAAADz/xQAAAAgAAAAAADz/xgAAAAgAAAAAADz/xwAAAAgAAAAAAAXAAgAAAAsAAAAAAAXAAwAAAAsAAAAAAAXABAAAAAsAAAAAAAXABQAAAAsAAAAAAAXABgAAAAsAAAAAAAXABwAAAAsAAAAAAAHAAgAAAAkAAAAAAALAAgAAAAkAAAAAAAPAAgAAAAkAAAAAAATAAgAAAAkAAAAAAAHABAAAAAUAAAAAAALAAwAAAAUAAAAAAAPABAAAAAUAAAAAAATABQAAAAUAAAAAAAHAAwAAAAYAAAAAAALABAAAAAYAAAAAAAPAAwAAAAYAAAAAAATAAwAAAAYAAAAAAATABAAAAAYAAAAAAAHABQAAAAYAAAAAAALABQAAAAYAAAAAAAPABQAAAAYAAAAAAAHABgAAAAYAAAAAAALABgAAAAYAAAAAAAPABgAAAAYAAAAAAATABgAAAAYAAAAAAATABwAAAAYAAAAAAAPABwAAAAYAAAAAAALABwAAAAYAAAAAAAHABwAAAAYAAAAAADd////AAAsAAAAAADd/wMAAAAsAAAAAADd/wcAAAAsAAAAAADd/wsAAAAsAAAAAADd/w8AAAAsAAAAAADd/xMAAAAsAAAAAADd/xcAAAAsAAAAAADd/xsAAAAsAAAAAADV/xMAAAAgAAAAAADV/xcAAAAgAAAAAADV/xsAAAAgAAAAAADZ/xcAAAAkAAAAAADZ/xsAAAAkAAAAAAAtAPv/AAAAAAAAAAAxAPv/AAAEAAAAAAA1APv/AAAMAAAAAAA=")
+
+[node name="Platforms" type="Node" parent="."]
+
+[node name="platform_temp" parent="Platforms" instance=ExtResource("3_wsuel")]
+position = Vector2(87, 44)
+scale = Vector2(19.88, 1)
+
+[node name="platform_temp2" parent="Platforms" instance=ExtResource("3_wsuel")]
+position = Vector2(-615, -101)
+scale = Vector2(5.96, 1)
+
+[node name="platform_temp3" parent="Platforms" instance=ExtResource("3_wsuel")]
+position = Vector2(792, -99)
+scale = Vector2(5.92001, 1)
+
+[node name="player" parent="." instance=ExtResource("4_y6fvv")]
+material = SubResource("ShaderMaterial_ov3hf")
+position = Vector2(-1, 35)
+scale = Vector2(0.4, 0.4)
+
+[node name="Camera2D" type="Camera2D" parent="player"]
+zoom = Vector2(3, 3)
+process_callback = 0
+limit_bottom = 165
+limit_smoothed = true
+position_smoothing_enabled = true
+drag_vertical_enabled = true
+script = ExtResource("6_lyshr")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("7_n8486")]
+
+[node name="Killzone" parent="." instance=ExtResource("8_eikgc")]
+position = Vector2(0, 139)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
+shape = SubResource("WorldBoundaryShape2D_e48xg")
+
+[node name="AudioControl" parent="." instance=ExtResource("9_6itdh")]
+
+[node name="RealRail" parent="." instance=ExtResource("9_lyvn1")]
+position = Vector2(-374, -34)
+rotation = 0.457881
+scale = Vector2(1.71254, 1)
+
+[node name="RealRail2" parent="." instance=ExtResource("9_lyvn1")]
+position = Vector2(552, -33)
+rotation = -0.457276
+scale = Vector2(1.71254, 1)
