@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://b0avjnk0bttqs"]
+[gd_scene load_steps=13 format=4 uid="uid://b0avjnk0bttqs"]
 
 [ext_resource type="PackedScene" uid="uid://k8s0hesiwy80" path="res://assets/Citytiles.tscn" id="1_ts7pn"]
 [ext_resource type="PackedScene" uid="uid://d0s0c7cjr71js" path="res://scenes/GameObj/platform_temp.tscn" id="3_wsuel"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cgbu07usceklp" path="res://scenes/GameObj/killzone.tscn" id="8_eikgc"]
 [ext_resource type="PackedScene" uid="uid://jqq6dm64cf0n" path="res://scenes/UI/audio_control.tscn" id="9_6itdh"]
 [ext_resource type="PackedScene" uid="uid://dl87xtln6sg13" path="res://scenes/player/real_rail.tscn" id="9_lyvn1"]
+[ext_resource type="PackedScene" uid="uid://dl2r5a8rp8mnq" path="res://scenes/GameObj/door.tscn" id="10_whenl"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ov3hf"]
 resource_local_to_scene = true
@@ -72,3 +73,6 @@ scale = Vector2(1.71254, 1)
 position = Vector2(552, -33)
 rotation = -0.457276
 scale = Vector2(1.71254, 1)
+
+[node name="Door" parent="." instance=ExtResource("10_whenl")]
+position = Vector2(150, 9)
